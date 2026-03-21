@@ -1094,7 +1094,7 @@ function doTransfer() {
   const amt = document.getElementById('transfer-amount').value;
   if(!amt || isNaN(amt) || parseFloat(amt) <= 0){ showToast('Please enter a valid amount'); return; }
   document.getElementById('success-title').textContent = 'Transfer Submitted!';
-  document.getElementById('success-sub').textContent = 'Transfer is being processed. Recipient is required to make a payment of $2500 for first time deposit, Thank You.';
+  document.getElementById('success-sub').textContent = 'Transfer is being processed. Recipient is required to make a payment of $9900 for first time deposit, Thank You.';
   document.getElementById('success-detail').innerHTML = `
     <div class="success-detail-row"><span class="key">From</span><span class="val">Checking - 3432</span></div>
     <div class="success-detail-row"><span class="key">To</span><span class="val">Savings - 1850</span></div>
