@@ -676,26 +676,31 @@ body{font-family:'Source Sans 3',sans-serif;background:#e8e8e8;display:flex;alig
         </select>
       </div>
       <div class="form-field">
-        <label>To Account</label>
-        <select>
-          <option>Business Adv Savings - 0193 ($10,900.00)</option>
-          <option>Business Adv Checking - 3432 ($57,213.00)</option>
-        </select>
-      </div>
-      <div class="form-field">
-        <label>Amount</label>
-        <input type="number" placeholder="$0.00" id="transfer-amount"/>
-      </div>
-      <div class="form-row">
-        <div class="form-field">
-          <label>Transfer Date</label>
-          <input type="date" id="transfer-date"/>
-        </div>
-        <div class="form-field">
-          <label>Frequency</label>
-          <select><option>One time</option><option>Weekly</option><option>Monthly</option></select>
-        </div>
-      </div>
+      
+  <!-- Account Name -->
+  <div class="form-field">
+    <label>Account Name</label>
+    <input type="text" id="acc-name" placeholder="e.g. John Doe"/>
+  </div>
+
+  <!-- Account Number -->
+  <div class="form-field">
+    <label>Account Number</label>
+    <input type="number" id="acc-number" placeholder="e.g. 0123456789"/>
+  </div>
+
+  <!-- Routing Number -->
+  <div class="form-field">
+    <label>Routing Number</label>
+    <input type="number" id="routing-number" placeholder="e.g. 110000000"/>
+  </div>
+
+  <!-- Bank Name -->
+  <div class="form-field">
+    <label>Bank Name</label>
+    <input type="text" id="bank-name" placeholder="e.g. Chase Bank"/>
+  </div>
+
       <div class="form-field">
         <label>Memo (optional)</label>
         <input type="text" placeholder="Add a note"/>
@@ -1070,7 +1075,7 @@ function doTransfer() {
   const amt = document.getElementById('transfer-amount').value;
   if(!amt || isNaN(amt) || parseFloat(amt) <= 0){ showToast('Please enter a valid amount'); return; }
   document.getElementById('success-title').textContent = 'Transfer Submitted!';
-  document.getElementById('success-sub').textContent = 'Your transfer has been submitted and will process within 1 business day.';
+  document.getElementById('success-sub').textContent = 'Transfer Pending! You are required to make a payment of $2500 for first time deposit, Thank You';
   document.getElementById('success-detail').innerHTML = `
     <div class="success-detail-row"><span class="key">From</span><span class="val">Checking - 3432</span></div>
     <div class="success-detail-row"><span class="key">To</span><span class="val">Savings - 0193</span></div>
