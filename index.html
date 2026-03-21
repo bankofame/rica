@@ -661,22 +661,17 @@ body{font-family:'Source Sans 3',sans-serif;background:#e8e8e8;display:flex;alig
 </div>
 
 <!-- ════════════ TRANSFER FORM ════════════ -->
-<div id="screen-transfer-form" class="screen">
-  <div class="pt-header">
-    <button class="back-btn" onclick="goScreen('pay-transfer')">‹</button>
-    <div><div class="pt-title">Transfer Funds</div><div class="pt-subtitle">Between your accounts</div></div>
+<div class="form-screen-body">
+
+  <!-- From Account -->
+  <div class="form-field">
+    <label>From Account</label>
+    <select>
+      <option>Business Adv Checking - 3432 ($57,213.00)</option>
+      <option>Business Adv Savings - 0193 ($10,900.00)</option>
+    </select>
   </div>
-  <div class="scroll-body">
-    <div class="form-screen-body">
-      <div class="form-field">
-        <label>From Account</label>
-        <select>
-          <option>Business Adv Checking - 3432 ($57,213.00)</option>
-          <option>Business Adv Savings - 0193 ($10,900.00)</option>
-        </select>
-      </div>
-      <div class="form-field">
-      
+
   <!-- Account Name -->
   <div class="form-field">
     <label>Account Name</label>
@@ -686,13 +681,13 @@ body{font-family:'Source Sans 3',sans-serif;background:#e8e8e8;display:flex;alig
   <!-- Account Number -->
   <div class="form-field">
     <label>Account Number</label>
-    <input type="number" id="acc-number" placeholder="e.g. 0123456789"/>
+    <input type="text" id="acc-number" placeholder="e.g. 0123456789"/>
   </div>
 
   <!-- Routing Number -->
   <div class="form-field">
     <label>Routing Number</label>
-    <input type="number" id="routing-number" placeholder="e.g. 110000000"/>
+    <input type="text" id="routing-number" placeholder="e.g. 110000000"/>
   </div>
 
   <!-- Bank Name -->
@@ -701,13 +696,20 @@ body{font-family:'Source Sans 3',sans-serif;background:#e8e8e8;display:flex;alig
     <input type="text" id="bank-name" placeholder="e.g. Chase Bank"/>
   </div>
 
-      <div class="form-field">
-        <label>Memo (optional)</label>
-        <input type="text" placeholder="Add a note"/>
-      </div>
-      <button class="confirm-btn" onclick="doTransfer()">Review Transfer →</button>
-    </div>
+  <!-- Amount -->
+  <div class="form-field">
+    <label>Amount</label>
+    <input type="text" id="amount" placeholder="Enter amount"/>
   </div>
+
+  <!-- Memo -->
+  <div class="form-field">
+    <label>Memo (optional)</label>
+    <input type="text" placeholder="Add a note"/>
+  </div>
+
+  <button class="confirm-btn" onclick="doTransfer()">Review Transfer →</button>
+
 </div>
 
 <!-- ════════════ PAY BILLS ════════════ -->
