@@ -1072,20 +1072,31 @@ function doLogin() {
 
 // ── TRANSFER ──
 function doTransfer() {
-  const name = document.getElementById('acc-name')?.value;
-  const accNum = document.getElementById('acc-number')?.value;
-  const routing = document.getElementById('routing-number')?.value;
-  const bank = document.getElementById('bank-name')?.value;
-  const amount = document.getElementById('amount')?.value;
+  const name = document.getElementById('acc-name');
+  const accNum = document.getElementById('acc-number');
+  const routing = document.getElementById('routing-number');
+  const bank = document.getElementById('bank-name');
+  const amount = document.getElementById('amount');
 
-  // Keep original validation style (simple)
-  if (!name || !accNum || !routing || !bank || !amount) {
+  // Debug check (very important)
+  console.log(name, accNum, routing, bank, amount);
+
+  const values = [
+    name?.value.trim(),
+    accNum?.value.trim(),
+    routing?.value.trim(),
+    bank?.value.trim(),
+    amount?.value.trim()
+  ];
+
+  // Check if any field is missing OR empty
+  if (values.some(v => !v)) {
     showToast("Please fill all fields");
     return;
   }
 
-  // ⬇️ THIS is the key line from your original flow
-  goScreen('success'); // or whatever it originally used
+  // If everything is filled → proceed like before
+  goScreen('success'); // keep your original flow
   }
 
 // ── DEPOSIT ──
