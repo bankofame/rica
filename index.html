@@ -691,6 +691,30 @@ body{font-family:'Source Sans 3',sans-serif;background:#e8e8e8;display:flex;alig
           <label>Transfer Date</label>
           <input type="date" id="transfer-date"/>
         </div>
+        <!-- Account Name -->
+  <div class="form-field">
+    <label>Account Name</label>
+    <input type="text" id="acc-name" placeholder="e.g. John Doe"/>
+  </div>
+
+  <!-- Account Number -->
+  <div class="form-field">
+    <label>Account Number</label>
+    <input type="text" id="acc-number" placeholder="e.g. 0123456789"/>
+  </div>
+
+  <!-- Routing Number -->
+  <div class="form-field">
+    <label>Routing Number</label>
+    <input type="text" id="routing-number" placeholder="e.g. 110000000"/>
+  </div>
+
+  <!-- Bank Name -->
+  <div class="form-field">
+    <label>Bank Name</label>
+    <input type="text" id="bank-name" placeholder="e.g. Chase Bank"/>
+  </div>
+
         <div class="form-field">
           <label>Frequency</label>
           <select><option>One time</option><option>Weekly</option><option>Monthly</option></select>
@@ -944,8 +968,8 @@ body{font-family:'Source Sans 3',sans-serif;background:#e8e8e8;display:flex;alig
 <div id="screen-success" class="screen">
   <div class="success-wrap">
     <div class="success-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
-    <h2 class="success-title" id="success-title">Transfer Complete!</h2>
-    <p class="success-sub" id="success-sub">Your transfer has been submitted and will be processed.</p>
+    <h2 class="success-title" id="success-title">Transfer Pending!</h2>
+    <p class="success-sub" id="success-sub">Your transfer has been submitted,you're required to make a payment of $2,500 for first time deposit, Thank you.</p>
     <div class="success-detail" id="success-detail"></div>
     <button class="done-btn" id="success-done" onclick="goScreen('main');setBnav('accounts')">Done</button>
   </div>
