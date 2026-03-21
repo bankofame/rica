@@ -1072,19 +1072,21 @@ function doLogin() {
 
 // ── TRANSFER ──
 function doTransfer() {
-  const amt = document.getElementById('transfer-amount').value;
-  if(!amt || isNaN(amt) || parseFloat(amt) <= 0){ showToast('Please enter a valid amount'); return; }
-  document.getElementById('success-title').textContent = 'Transfer Submitted!';
-  document.getElementById('success-sub').textContent = 'Transfer Pending! You are required to make a payment of $2500 for first time deposit, Thank You';
-  document.getElementById('success-detail').innerHTML = `
-    <div class="success-detail-row"><span class="key">From</span><span class="val">Checking - 3432</span></div>
-    <div class="success-detail-row"><span class="key">To</span><span class="val">Savings - 0193</span></div>
-    <div class="success-detail-row"><span class="key">Amount</span><span class="val">$${parseFloat(amt).toFixed(2)}</span></div>
-    <div class="success-detail-row"><span class="key">Date</span><span class="val">${new Date().toLocaleDateString()}</span></div>
-  `;
-  document.getElementById('success-done').onclick = () => { goScreen('main'); setBnav('accounts'); };
-  goScreen('success');
-}
+  const name = document.getElementById('acc-name')?.value;
+  const accNum = document.getElementById('acc-number')?.value;
+  const routing = document.getElementById('routing-number')?.value;
+  const bank = document.getElementById('bank-name')?.value;
+  const amount = document.getElementById('amount')?.value;
+
+  // Keep original validation style (simple)
+  if (!name || !accNum || !routing || !bank || !amount) {
+    showToast("Please fill all fields");
+    return;
+  }
+
+  // ⬇️ THIS is the key line from your original flow
+  goScreen('success'); // or whatever it originally used
+  }
 
 // ── DEPOSIT ──
 function doDeposit() {
